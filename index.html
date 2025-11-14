@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Excel Manager</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    button { margin: 4px; padding: 6px 10px; cursor: pointer; }
+    #container { display: flex; gap: 20px; margin-top: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 6px; }
+    th { background: #f4f4f4; }
+    input.cell {
+      width: 100%; border: none; outline: none; padding: 4px;
+      background: #f9f9f9; box-sizing: border-box;
+    }
+    input.cell:focus { background: #eaf3ff; outline: 2px solid #0078d7; }
+    #editSection { display: none; } /* 처음엔 숨김 */
+  </style>
+</head>
+<body>
+  <h2>📊 엑셀 데이터 관리 프로그램</h2>
+  <div>
+    <button id="load">엑셀 불러오기</button>
+    <button id="edit">입력하기</button>
+  </div>
+
+  <div id="viewSection">
+    <h3>Data 시트 (보기 모드)</h3>
+    <table id="viewTable"></table>
+  </div>
+
+  <div id="editSection">
+    <h3>Data 시트 (입력 모드)</h3>
+    <table id="editTable"></table>
+    <button id="save">저장</button>
+    <button id="cancel">취소</button>
+  </div>
+
+  <div id="logSection">
+    <h3>변경 로그 (Log 시트)</h3>
+    <table id="logTable"></table>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

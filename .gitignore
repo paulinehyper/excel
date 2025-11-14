@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.exe
+*.7z
+*.zip
+*.msi
+.DS_Store

@@ -1,0 +1,48 @@
+{
+  "name": "excel-manager",
+  "version": "1.0.0",
+  "description": "Excel Data Manager for Windows",
+  "author": "Hyper Lee",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:setup": "electron-builder --win nsis --config.win.sign=false",
+    "build:portable": "electron-builder --win portable --config.win.sign=false"
+  },
+  "build": {
+    "appId": "com.hyperlee.excelmanager",
+    "productName": "ExcelManager",
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "icon.ico",
+      "sign": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "renderer.js",
+      "package.json",
+      "node_modules/**/*",
+      "icon.ico"
+    ]
+  },
+  "devDependencies": {
+    "@electron/remote": "^2.1.3",
+    "electron": "^27.3.11",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5",
+    "@electron/remote": "^2.1.2"
+  }
+}
