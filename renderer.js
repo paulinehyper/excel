@@ -64,18 +64,53 @@ function renderEditTable(data) {
     if (cIdx === 0) {
       th.textContent = '';
     } else {
+      const btnContainer = document.createElement('div');
+      btnContainer.style.display = 'flex';
+      btnContainer.style.gap = '4px';
+      btnContainer.style.justifyContent = 'center';
+      
       const deleteColBtn = document.createElement('button');
-      deleteColBtn.textContent = '열삭제';
-      deleteColBtn.style.padding = '2px 6px';
+      deleteColBtn.textContent = '−';
+      deleteColBtn.style.padding = '4px 8px';
       deleteColBtn.style.cursor = 'pointer';
-      deleteColBtn.style.fontSize = '11px';
+      deleteColBtn.style.fontSize = '18px';
+      deleteColBtn.style.fontWeight = 'bold';
+      deleteColBtn.style.background = '#f44336';
+      deleteColBtn.style.color = 'white';
+      deleteColBtn.style.border = 'none';
+      deleteColBtn.style.borderRadius = '4px';
+      deleteColBtn.style.minWidth = '28px';
+      deleteColBtn.style.minHeight = '24px';
+      deleteColBtn.title = '열 삭제';
       deleteColBtn.addEventListener('click', () => {
         if (confirm(`"${data[0][cIdx]}" 열을 삭제하시겠습니까?`)) {
           editData.forEach(row => row.splice(cIdx, 1));
           renderEditTable(editData);
         }
       });
-      th.appendChild(deleteColBtn);
+      
+      const addColBtn = document.createElement('button');
+      addColBtn.textContent = '+';
+      addColBtn.style.padding = '4px 8px';
+      addColBtn.style.cursor = 'pointer';
+      addColBtn.style.fontSize = '16px';
+      addColBtn.style.fontWeight = 'bold';
+      addColBtn.style.background = '#4CAF50';
+      addColBtn.style.color = 'white';
+      addColBtn.style.border = 'none';
+      addColBtn.style.borderRadius = '4px';
+      addColBtn.style.minWidth = '28px';
+      addColBtn.style.minHeight = '24px';
+      addColBtn.title = '오른쪽에 열 추가';
+      addColBtn.addEventListener('click', () => {
+        editData.forEach(row => row.splice(cIdx + 1, 0, ''));
+        editData[0][cIdx + 1] = 'Column' + (cIdx + 1);
+        renderEditTable(editData);
+      });
+      
+      btnContainer.appendChild(deleteColBtn);
+      btnContainer.appendChild(addColBtn);
+      th.appendChild(btnContainer);
     }
     deleteColRow.appendChild(th);
   });
