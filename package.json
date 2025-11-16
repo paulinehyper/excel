@@ -18,7 +18,6 @@
         "nsis",
         "portable"
       ],
-      "icon": "icon.ico",
       "sign": null
     },
     "nsis": {
@@ -32,17 +31,17 @@
       "index.html",
       "renderer.js",
       "package.json",
-      "node_modules/**/*",
-      "icon.ico"
+      "node_modules/**/*"
     ]
   },
   "devDependencies": {
     "@electron/remote": "^2.1.3",
     "electron": "^27.3.11",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
   },
   "dependencies": {
-    "xlsx": "^0.18.5",
-    "@electron/remote": "^2.1.2"
+    "@electron/remote": "^2.1.2",
+    "xlsx": "^0.18.5"
   }
 }

@@ -16,13 +16,37 @@
     }
     input.cell:focus { background: #eaf3ff; outline: 2px solid #0078d7; }
     #editSection { display: none; } /* 처음엔 숨김 */
+    #mergeSection { display: none; margin-top: 20px; }
+    #fileList { list-style: none; padding: 0; }
+    #fileList li { 
+      padding: 8px; 
+      margin: 4px 0; 
+      background: #f0f0f0; 
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #fileList li button { padding: 4px 8px; }
+    .merge-buttons { margin-top: 10px; }
+    .changed-cell { font-weight: bold; }
   </style>
 </head>
 <body>
   <h2>📊 엑셀 데이터 관리 프로그램</h2>
   <div>
+    <button id="create">새 엑셀 만들기</button>
     <button id="load">엑셀 불러오기</button>
+    <button id="merge">엑셀 병합</button>
     <button id="edit">입력하기</button>
+    <button id="settings">설정</button>
+  </div>
+  
+  <div id="settingsSection" style="display: none; margin: 10px 0; padding: 10px; background: #f9f9f9; border-radius: 4px;">
+    <label>변경된 셀 글자 색상: 
+      <input type="color" id="changeColor" value="#ff0000">
+    </label>
+    <button id="applySettings">적용</button>
   </div>
 
   <div id="viewSection">
@@ -40,6 +64,17 @@
   <div id="logSection">
     <h3>변경 로그 (Log 시트)</h3>
     <table id="logTable"></table>
+  </div>
+
+  <div id="mergeSection">
+    <h3>엑셀 파일 병합</h3>
+    <p>병합할 엑셀 파일들을 선택하세요 (최소 2개)</p>
+    <button id="addFiles">파일 추가</button>
+    <ul id="fileList"></ul>
+    <div class="merge-buttons">
+      <button id="executeMerge" disabled>병합 실행</button>
+      <button id="cancelMerge">취소</button>
+    </div>
   </div>
 
   <script src="renderer.js"></script>
